@@ -85,7 +85,7 @@ You will see a browser window with a blank page. Now you can send interactions (
 http://localhost:PORT/brap 
 See brap.player.SampleClient.java for more details.      
 
-<strong>LISCENCE</strong> <br>
+<strong>LICENSE</strong> <br>
 This project follows the BSD License.
 
 <strong>NOTE</strong><br/>
