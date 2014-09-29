@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- WARNING: Eclipse auto-generated file.
+
+              Any modifications will be overwritten.
+
+              To include a user specific buildfile here, simply create one in the same
+
+              directory with the processing instruction <?eclipse.ant.import?>
+
+              as the first entry and export the buildfile again. -->
+
+	<project basedir="." default="build" name="BRAP">
+
+    <property environment="env"/>
+
+    <property name="debuglevel" value="source,lines,vars"/>
+
+    <property name="target" value="1.6"/>
+
+    <property name="source" value="1.6"/>
+
+    <path id="BRAP.classpath">
+
+        <pathelement location="bin"/>
+
+        <pathelement location="libs/commons-lang-2.6.jar"/>
+
+        <pathelement location="libs/httpclient-4.2.1.jar"/>
+
+        <pathelement location="libs/jcommander-1.29.jar"/>
+
+        <pathelement location="libs/joda-time-2.1.jar"/>
+
+        <pathelement location="libs/JSErrorCollector-0.4.jar"/>
+
+        <pathelement location="libs/jsoup-1.7.2.jar"/>
+
+        <pathelement location="libs/selenium-server-standalone-2.39.0.jar"/>
+
+        <pathelement location="libs/slf4j-api-1.6.1.jar"/>
+
+    </path>
+
+    <target name="init">
+
+        <mkdir dir="bin"/>
+
+        <copy includeemptydirs="false" todir="bin">
+
+            <fileset dir="src">
+
+                <exclude name="**/*.launch"/>
+
+                <exclude name="**/*.java"/>
+
+                <exclude name="js/"/>
+
+            </fileset>
+
+        </copy>
+
+    </target>
+
+    <target name="clean">
+
+        <delete dir="bin"/>
+
+    </target>
+
+
+
+    <target depends="clean" name="cleanall"/>
+
+    <target depends="build-subprojects,build-project" name="build"/>
+
+    <target name="build-subprojects"/>
+
+
+
+	
+
+    <target depends="init" name="build-project">
+
+        <echo message="${ant.project.name}: ${ant.file}"/>
+
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+
+            <src path="src"/>
+
+            <exclude name="js/"/>
+
+            <classpath refid="BRAP.classpath"/>
+
+        </javac>
+
+    </target>
+
+    <target name="BrapMain">
+
+        <java classname="main.BrapMain" failonerror="true" fork="yes">
+
+            <classpath refid="BRAP.classpath"/>
+
+        </java>
+
+    </target>
+
+
+
+	<!--ANT 1.7 is required                                        -->
+
+    <target depends="build-project" name="create_run_jar">
+
+        <jar destfile="BRAP.jar" filesetmanifest="mergewithoutmain">
+
+            <manifest>
+
+                <attribute name="Main-Class" value="main.BrapMain"/>
+
+                <attribute name="Class-Path" value="."/>
+
+            </manifest>
+
+            <fileset dir="bin"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/commons-lang-2.6.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/httpclient-4.2.1.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/jcommander-1.29.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/joda-time-2.1.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/JSErrorCollector-0.4.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/jsoup-1.7.2.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/selenium-server-standalone-2.39.0.jar"/>
+
+            <zipfileset excludes="META-INF/*.SF" src="libs/slf4j-api-1.6.1.jar"/>
+
+        </jar>
+
+    </target>
+
+	
+
+</project>
+
+
