@@ -1,0 +1,10 @@
+--- Browser.java	2014-09-28 14:47:07.774519600 -0500
++++ BrowserNew.java	2014-09-28 14:45:28.547033900 -0500
+@@ -31,6 +31,7 @@
+ 		try {
+ 			if(type.toLowerCase().contains("chrome")){
+ 				ChromeOptions options = new ChromeOptions();
++				options.addArguments("test-type");
+ 				if(profile!=null){
+ 					options.addArguments("user-data-dir="
+ 							+ profile);
