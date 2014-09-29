@@ -86,8 +86,8 @@ http://localhost:PORT/brap
 See brap.player.SampleClient.java for more details.      
 
 <strong>LICENSE</strong> <br>
-This project follows the BSD License.
+See the license file
 
-<strong>NOTE</strong><br/>
-<a name="fn"></a>BRAP was developed mostly when the owner of this project was at AT&T Labs Research.
+<strong>Acknowledgement</strong><br/>
+<a name="fn"></a>BRAP was developed mostly when the owner of this project was at AT&T Labs Research. Besides, 
 
