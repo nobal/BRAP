@@ -15,7 +15,12 @@ First of all, please create a directory (say BRAP) and make its structure as fol
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- jquery.min.js<br />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--  output<br/>
   <br />
-As you can see, the folder BRAP contains 3 sub-folders (drivers, scripts and output) and a Jar file (BRAP.jar). The "driver" sub-folder should contain the selenium driver for browsers. In the example, "chrome" is the driver for the Chrome browser. If you want to use a different browser, please put the corresponding driver in this folder.  In the "scripts" directory, you can see BRAP.js and jquery.min.js. You can specify what types of actions you would like to record in BRAP.js. jquery.min.js is injected in the page so that the program (BRAP.jar) can use jQuery to record and play the interactions. The "output" folder holds the result files. </p>
+As you can see, the folder BRAP contains 3 sub-folders (drivers, scripts and output) and a Jar file (BRAP.jar). See below how to generate BRAP.jar. The "driver" sub-folder should contain the selenium driver for browsers. In the example, "chrome" is the driver for the Chrome browser. If you want to use a different browser, please put the corresponding driver in this folder.  In the "scripts" directory, you can see BRAP.js and jquery.min.js. You can specify what types of actions you would like to record in BRAP.js. jquery.min.js is injected in the page so that the program (BRAP.jar) can use jQuery to record and play the interactions. The "output" folder holds the result files. </p>
+
+<strong> How to generate BRAP.jar ?</strong>
+You can use build.xml to generate BRAP.jar : <br>
+&nbsp;&nbsp;&nbsp;#] ant create_run_jar 
+
 <p>Below, you'll see the commands to record and play interactions. But before that, please make sure you have the folder structure as above and you have the right driver (e.g. recent driver) in the "driver" directory. <br/>
 <br/>
 
@@ -88,6 +93,6 @@ See brap.player.SampleClient.java for more details.
 <strong>LICENSE</strong> <br>
 See the license file
 
-<strong>Acknowledgement</strong><br/>
-<a name="fn"></a>BRAP was developed mostly when the owner of this project was at AT&T Labs Research. Besides, 
+<strong>ACKNOWLEDGEMENTS</strong><br/>
+<a name="fn"></a>BRAP was developed mostly when the owner of this project was at AT&T Labs Research. Thanks to Dan Melamed, Amanda Stent, Hyuckchul Jung and Giuseppe Di Fabbrizio for the great ideas and suggestions. 
 
