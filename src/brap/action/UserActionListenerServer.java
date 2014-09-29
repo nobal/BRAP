@@ -12,11 +12,6 @@ import java.util.logging.Logger;
 
 import brap.tool.Utils;
 
-import main.BrapMain;
-
-
-import test.EventAttacherTest;
-
 // A Web Server waits for clients to connect, then starts a separate
 // thread to handle the request.
 public class UserActionListenerServer extends Thread {
