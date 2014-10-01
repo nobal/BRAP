@@ -102,7 +102,7 @@ public class BrapMain {
 		tl.params.oDir="output";
 		//tl.params.genInfoFiles=true;
 		tl.params.scriptsDir="scripts";
-		*/
+		
 		//Play; now it doesn't need any urls as url is extracted from interaction file
 		tl.params.play=true;
 		//tl.params.url="http://www.abebooks.com/servlet/SearchEntry?cm_sp=TopNav-_-Home-_-Advs";
@@ -110,7 +110,7 @@ public class BrapMain {
 		tl.params.browser="chrome";//firefox
 		tl.params.oDir="output";	
 					
-		/*	
+			
 		//Stand alone 
 		tl.params.player=true;
 		tl.params.url="http://www.abebooks.com/servlet/SearchEntry?cm_sp=TopNav-_-Home-_-Advs";
