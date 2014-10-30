@@ -255,12 +255,12 @@ public class BrapMain {
 	}
 
 	public void play(String url) {
-		LOGGER.info("Filling in data for: " + url);
-		String interactionFile = params.file;
-	 
+		String interactionFile = params.file;	 
+		if (url!=null && !url.contains("://"))
+			url = "http://" + url;
+
 		// open the browser and load the URL
 		openBrowser(url,params.browser,params.browserBin,params.profile);
-
 		WebDriver driver = browser.getWebDriver();
 
 		// load the values
@@ -270,7 +270,7 @@ public class BrapMain {
 		String results = "";
 		
 		// There should be at least two lines to proceed (header line plus recorded line)
-		if (lines.size() <= 2) {
+		if (lines.size() < 2) {
 			LOGGER.info("No data for playing interactions.");
 			return;			
 		} else {
