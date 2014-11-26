@@ -6,11 +6,19 @@ import static brap.form.FormConstants.TEXTAREA;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import com.google.common.base.Function;
 
 import brap.action.InteractionFileParser;
 import brap.action.UserActionLogger;
@@ -224,6 +232,14 @@ public class Player {
 					String elmType = "";
 					try {
 						elmType = FormElement.computeType(we);
+						//Irrespective of element type:
+						//a) wait till it becomes visible 
+						this.fluentWaitTillVisible(we,driver);
+						
+						//b) move to this element to perform some actions 
+						Actions actions = new Actions(driver);
+						actions.moveToElement(we);
+				
 					} catch (Exception e) {
 
 					}
@@ -257,6 +273,12 @@ public class Player {
 							select.sendKeys(value + "\t");
 						}
 					} else {
+							try{
+								fluentWaitTillClickable(we,driver);
+							}catch(Exception e){
+								LOGGER.info("Exception while performing FluentWait");
+							}
+						
 						we.click();
 					}
 
@@ -280,5 +302,33 @@ public class Player {
 		return results;
 	}
 
+	public  WebElement fluentWaitTillFind(final By locator,WebDriver driver) {
+	    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	            .withTimeout(30, TimeUnit.SECONDS)
+	            .pollingEvery(5, TimeUnit.SECONDS)
+	            .ignoring(NoSuchElementException.class);
+	    WebElement we = wait.until(new Function<WebDriver, WebElement>() {
+	        public WebElement apply(WebDriver driver) {
+	            return driver.findElement(locator);
+	        }
+	    });
+	    return  we;
+	};
+	
+	public  void fluentWaitTillVisible(WebElement we,WebDriver driver) {
+	    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	            .withTimeout(30, TimeUnit.SECONDS)
+	            .pollingEvery(5, TimeUnit.SECONDS)
+	            .ignoring(NoSuchElementException.class);
+	    wait.until(ExpectedConditions.visibilityOf(we));
+	};
+	
+	public  void fluentWaitTillClickable(WebElement we,WebDriver driver) {
+	    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	            .withTimeout(30, TimeUnit.SECONDS)
+	            .pollingEvery(5, TimeUnit.SECONDS)
+	            .ignoring(NoSuchElementException.class);
+	    wait.until(ExpectedConditions.elementToBeClickable(we));
+	};
 	
 }
