@@ -23,12 +23,13 @@ public class StandAlonePlayer extends Player {
 	public static int port = 8888;
 	private static ServerSocket serverSocket;
 	private static WebDriver driver;
+	private int playerDelayInSeconds=0;
 
-	public StandAlonePlayer(WebDriver driver, int port) {
+	public StandAlonePlayer(WebDriver driver, int port, int playerDelayInSeconds) {
 		super(driver);
 		StandAlonePlayer.driver = driver;
 		StandAlonePlayer.port = port;
-
+		this.playerDelayInSeconds=playerDelayInSeconds;
 	}
 
 	public static void closeServer() {
@@ -81,7 +82,7 @@ public class StandAlonePlayer extends Player {
 							intLines.add(lines[i]);
 						}
 
-						String output = playActions(intLines, url);
+						String output = playActions(intLines, url,this.playerDelayInSeconds);
 						PrintStream response = new PrintStream(
 								new BufferedOutputStream(s.getOutputStream()));
 						response.println("HTTP/1.1 200 OK\r\n"
@@ -111,7 +112,7 @@ public class StandAlonePlayer extends Player {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		StandAlonePlayer player = new StandAlonePlayer(null, 8888);
+		StandAlonePlayer player = new StandAlonePlayer(null, 8888,0);
 		player.run();
 
 	}

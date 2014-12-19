@@ -307,7 +307,7 @@ public class BrapMain {
 		String url = "about:blank";
 		openBrowser(url,params.browser,params.browserBin,params.profile);
 		StandAlonePlayer player = new StandAlonePlayer(browser.getWebDriver(),
-				port);
+				port,params.playerDelayInSeconds);
 		player.run();
 	}
 }
