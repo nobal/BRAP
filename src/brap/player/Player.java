@@ -34,6 +34,17 @@ public class Player {
 	}
 
 	public String playActions(List<String> lines, String url) {
+		return playActions(lines,url,-1);
+	}
+	
+	/**
+	 * 
+	 * @param lines
+	 * @param url
+	 * @param delayInSeconds - if >0, the player pauses for that many seconds before executing another interaciton
+	 * @return
+	 */
+	public String playActions(List<String> lines, String url, int delayInSeconds) {
 		LOGGER.info("Starting URL:" + url + ", Total Size: " + lines.size());
 		String results = "";
 		int i = 1;
@@ -281,7 +292,17 @@ public class Player {
 						
 						we.click();
 					}
-
+					//if DelayInSeconds is specified then pause 
+					try {
+						if (delayInSeconds > 0) {
+							LOGGER.info("Waiting for " + delayInSeconds
+									+ " seconds");
+							Thread.sleep(delayInSeconds * 1000);
+						}
+					} catch (Exception e) {
+						LOGGER.info("Exception while waiting ");
+					}
+					
 				} else {
 					LOGGER.info("Element couldn't be found. So Couldn't execute the command:"
 							+ line);

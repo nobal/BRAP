@@ -49,6 +49,10 @@ public class Params {
 	@Parameter(names="-playerserver", description = "Launch a player in server mode")
 	boolean playerserver=false;
 	
+	@Parameter(names="-playerDelayInSeconds", description = "Delay in seconds for player to wait before executing another interaction")
+	int playerDelayInSeconds=0;
+	
+	
 	public  String validateParameters(){
 		String result=""; 
 		if(url==null || url.isEmpty()){

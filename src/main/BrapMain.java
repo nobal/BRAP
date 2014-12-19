@@ -282,7 +282,7 @@ public class BrapMain {
 		}
 		Player player = new Player(driver);
 
-		results = player.playActions(lines, url);
+		results = player.playActions(lines, url,params.playerDelayInSeconds);
 		// Print the result in the console
 		System.out.println(results);
 		
