@@ -3,6 +3,7 @@ package brap.player;
 import static brap.form.FormConstants.SELECT;
 import static brap.form.FormConstants.TEXT;
 import static brap.form.FormConstants.TEXTAREA;
+import static brap.form.FormConstants.CHECKBOX;
 
 import java.util.List;
 import java.util.Map;
@@ -265,7 +266,20 @@ public class Player {
 						}
 						we.sendKeys(value);
 						// we.sendKeys(Keys.TAB);
-					} else if (elmType.equalsIgnoreCase(
+					}
+					else if (elmType.equalsIgnoreCase(CHECKBOX)) {
+						//click in checkbox is to toggle. So, check the cases
+						if( (value.equalsIgnoreCase("true")   && !we.isSelected()) || 
+						    (value.equalsIgnoreCase("false")  && we.isSelected()) ){
+							try{
+								fluentWaitTillClickable(we,driver);
+							}catch(Exception e){
+								LOGGER.info("Exception while performing FluentWait");
+							}
+							we.click();
+						}						
+					}
+					else if (elmType.equalsIgnoreCase(
 							SELECT)) {
 						WebElement select =we;
 						List<WebElement> options = select.findElements(By
